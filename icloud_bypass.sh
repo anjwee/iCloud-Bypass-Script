@@ -37,7 +37,7 @@ echo "> 正在挂载根目录文件系统为读写 [已完成3/8]"
 runcmd "mount -o rw,union,update / "
 echo
 echo "> 正在重命名Setup.app [已完成4/8]"
-#runcmd "mv /Applications/Setup.app /Applications/Setup.app.bak"
+runcmd "mv /Applications/Setup.app /Applications/Setup.app.bak"
 echo
 echo "> 正在终止设置向导 [已完成5/8]"
 runcmd "killall Setup"
