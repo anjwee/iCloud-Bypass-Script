@@ -49,9 +49,6 @@ echo "> 正在重启backboardd [已完成7/8]"
 runcmd "killall backboardd"
 runcmd "killall backboardd"
 echo
-echo "> 正在修复国行网络访问 [已完成8/8]"
-runcmd "rm -rf /Library/Preferences/com.apple.networkextension.plist"
-runcmd "killall -9 Commcenter"
 clear
 echo
 echo "> 所有操作已完成！如无报错，设备应进入桌面。"
