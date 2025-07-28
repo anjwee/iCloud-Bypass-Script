@@ -46,8 +46,7 @@ echo "> 正在清理缓存 [已完成6/8]"
 runcmd "uicache --all"
 echo
 echo "> 正在重启backboardd [已完成7/8]"
-runcmd "killall backboardd"
-runcmd "killall backboardd"
+runcmd "killall sbreload"
 echo
 clear
 echo
