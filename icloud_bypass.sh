@@ -36,7 +36,7 @@ sleep 1
 
 # 函数：执行远程命令
 runcmd () {
-    sshpass -p alpine ssh -o StrictHostKeyChecking=no root@localhost -p 2333 "$1" > /dev/null
+    sshpass -p alpine ssh -o StrictHostKeyChecking=no root@localhost -p 2222 "$1" > /dev/null
 }
 echo
 echo "> 正在挂载根目录文件系统为读写 [已完成3/8]"
