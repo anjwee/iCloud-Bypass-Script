@@ -29,7 +29,7 @@ clear
 
 echo "> 正在映射SSH端口到@localhost [已完成1/8]"
 # 启动端口转发：本地2333 → 设备22（SSH）
-iproxy 2333 22 2>/dev/null &
+iproxy 2333 44 2>/dev/null &
 
 # 等1秒，确保 iproxy 启动成功
 sleep 1
