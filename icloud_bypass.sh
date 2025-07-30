@@ -29,15 +29,7 @@ clear
 
 echo "> 正在映射SSH端口到@localhost [已完成1/8]"
 # 启动端口转发：本地2333 → 设备22（SSH）
-iproxy 2333 44 2>/dev/null &
-
-# 等1秒，确保 iproxy 启动成功
-sleep 1
-
-# 函数：执行远程命令
-runcmd () {
-    sshpass -p alpine ssh -o StrictHostKeyChecking=no root@localhost -p 2333 "$1" > /dev/null
-}
+sshpass -p alpine ssh root@127.0.0.1 -p 2222
 echo
 echo "> 正在挂载根目录文件系统为读写 [已完成3/8]"
 runcmd "mount -o rw,union,update / "
