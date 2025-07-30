@@ -3,6 +3,7 @@ echo "> 正在安装依赖..."
 #brew install libusbmuxd https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb
 curl -O https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb
 echo
+brew install libimobiledevice usbmuxd
 echo "> 正在备份SSH信任列表到~/.ssh/known_hosts.bak..."
 mv ~/.ssh/known_hosts ~/.ssh/known_hosts.bak
 clear
@@ -27,9 +28,13 @@ read -p "> 请使用Checkra1n激活越狱，并将设备连接到此Mac。完成
 clear
 
 echo "> 正在映射SSH端口到@localhost [已完成1/8]"
-iproxy 2333 44 2> /dev/null &
-echo
-echo "> 正在通过SSH访问设备 [已完成2/8]"
+# 启动端口转发：本地2333 → 设备22（SSH）
+iproxy 2333 22 2>/dev/null &
+
+# 等1秒，确保 iproxy 启动成功
+sleep 1
+
+# 函数：执行远程命令
 runcmd () {
     sshpass -p alpine ssh -o StrictHostKeyChecking=no root@localhost -p 2333 "$1" > /dev/null
 }
