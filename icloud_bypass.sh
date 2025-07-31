@@ -30,14 +30,14 @@ iproxy 2333 44 2> /dev/null &
 echo
 echo "> 正在通过SSH访问设备 [已完成2/8]"
 runcmd () {
-    sshpass -p alpine ssh -o StrictHostKeyChecking=no root@localhost -p 2333 "$1" > /dev/null
+    sshpass -p alpine ssh -o StrictHostKeyChecking=no root@localhost -p 22 "$1" > /dev/null
 }
 echo
 echo "> 正在挂载根目录文件系统为读写 [已完成3/8]"
 runcmd "mount -o rw,union,update / "
-echo 
+echo
 echo "> 正在重命名Setup.app [已完成4/8]"
-runcmd "mv /Applications/Setup.app/Setup /Applications/Setup.app/Setup.backup"
+runcmd "mv /Applications/Setup.app /Applications/Setup.app.bak"
 echo
 echo "> 正在终止设置向导 [已完成5/8]"
 runcmd "killall Setup"
@@ -46,7 +46,8 @@ echo "> 正在清理缓存 [已完成6/8]"
 runcmd "uicache --all"
 echo
 echo "> 正在重启backboardd [已完成7/8]"
-runcmd "killall -HUP backboardd"
+runcmd "killall backboardd"
+runcmd "killall backboardd"
 echo
 echo "> 正在修复国行网络访问 [已完成8/8]"
 runcmd "rm -rf /Library/Preferences/com.apple.networkextension.plist"
